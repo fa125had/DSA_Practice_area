@@ -27,4 +27,4 @@
 * Search and Graph-Search Algorithms
   * Binary Search and Search Trees
   * Graph Traversals
-  * Dijkstra's
+  * Dijkstra's Algorithm
