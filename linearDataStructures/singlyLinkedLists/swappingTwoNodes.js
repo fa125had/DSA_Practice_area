@@ -25,7 +25,7 @@ const swapNodes = (list, data1, data2) => {
   let node1Prev = null;
   let node2Prev = null;
 
-  // finding node1
+  // step 1
   while (node1 !== null) {
     if (node1.data === data1) {
       break;
@@ -35,6 +35,7 @@ const swapNodes = (list, data1, data2) => {
     node1 = node1.getNextNode();
   }
 
+  // step 2
   while (node2 !== null) {
     if (node2.data === data2) {
       break;
@@ -43,4 +44,26 @@ const swapNodes = (list, data1, data2) => {
     node2Prev = node2;
     node2 = node2.getNextNode();
   }
+
+  // step 3
+  if (node1Prev === null) {
+    list.head = node2;
+  } else {
+    // step 4
+    node1Prev.setNextNode(node2);
+  }
+
+  // step 5
+  if (node2Prev === null) {
+    list.head = node1;
+  } else {
+    // step 6
+    node2Prev.setNextNode(node1);
+  }
+
+  const temp = node1.getNextNode();
+  // step 7
+  node1.setNextNode(node2.getNextNode());
+  // step 8
+  node2.setNextNode(temp);
 };
