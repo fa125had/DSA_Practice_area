@@ -17,8 +17,15 @@ Steps:
 
 8- Set node2‘s next node to node1‘s next node
 */
+import LinkedList from "./linkedList.js";
 
 const swapNodes = (list, data1, data2) => {
+  // edge case, if data1 is equal with data2
+  if (data1 === data2) {
+    console.log("Elements are the same - no swap needed.");
+    return;
+  }
+
   let node1 = list.head;
   let node2 = list.head;
 
@@ -45,6 +52,12 @@ const swapNodes = (list, data1, data2) => {
     node2 = node2.getNextNode();
   }
 
+  // edge case, if node1 or node2 is null
+  if (node1 === null || node2 === null) {
+    console.log("Swap not possible - one or more element is not in the list");
+    return;
+  }
+
   // step 3
   if (node1Prev === null) {
     list.head = node2;
@@ -67,3 +80,13 @@ const swapNodes = (list, data1, data2) => {
   // step 8
   node2.setNextNode(temp);
 };
+
+
+const testList = new LinkedList();
+for (let i = 0; i <= 10; i++) {
+  testList.addToTail(i);
+}
+
+testList.printList();
+swapNodes(testList, 2, 5);
+testList.printList();
