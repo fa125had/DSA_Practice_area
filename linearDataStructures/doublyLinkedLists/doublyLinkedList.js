@@ -35,4 +35,74 @@ class DoublyLinkedList {
       this.head = newTail;
     }
   }
+
+  removeHead() {
+    const removedHead = this.head;
+
+    if (!removedHead) {
+      return;
+    }
+
+    this.head = removedHead.getNextNode();
+
+    if (this.head) {
+      this.head.setPreviousNode(null);
+    }
+
+    if (this.head === this.tail) {
+      this.removeTail();
+    }
+
+    return removedHead.data;
+  }
+
+  removeTail() {
+    const removedTail = this.tail;
+
+    if (!removedTail) {
+      return;
+    }
+
+    this.tail = removedTail.getPreviousNode();
+
+    if (this.tail) {
+      this.tail.setNextNode(null);
+    }
+
+    if (removedTail === this.head) {
+      this.removeHead();
+    }
+
+    return removedTail.data;
+  }
+
+  removeByData(data) {
+    let nodeToRemove;
+    let currentNode = this.head;
+
+    while (currentNode) {
+      if (currentNode.data === data) {
+        nodeToRemove = currentNode;
+        break;
+      }
+      currentNode = currentNode.getNextNode();
+    }
+
+    if (!nodeToRemove) {
+      return null;
+    }
+
+    if (nodeToRemove === this.head) {
+      this.removeHead();
+    } else if (nodeToRemove === this.tail) {
+      this.removeTail();
+    } else {
+      const nextNode = nodeToRemove.getNextNode();
+      const prevNode = nodeToRemove.getPreviousNode();
+      prevNode.setNextNode(nextNode);
+      nextNode.setPreviousNode(prevNode);
+    }
+
+    return nodeToRemove;
+  }
 }
