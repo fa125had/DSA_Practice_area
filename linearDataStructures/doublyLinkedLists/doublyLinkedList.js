@@ -9,7 +9,7 @@ class DoublyLinkedList {
   addToHead(data) {
     const newHead = new Node(data);
     const currentHead = this.head;
-    if (currentNode) {
+    if (currentHead) {
       currentHead.setPreviousNode(newHead);
       newHead.setNextNode(currentHead);
     }
@@ -105,4 +105,17 @@ class DoublyLinkedList {
 
     return nodeToRemove;
   }
+
+  printList() {
+    let currentNode = this.head;
+    let output = "<head> ";
+    while (currentNode !== null) {
+      output += currentNode.data + " ";
+      currentNode = currentNode.getNextNode();
+    }
+    output += "<tail>";
+    console.log(output);
+  }
 }
+
+export default DoublyLinkedList;
