@@ -18,9 +18,11 @@ Recipe for retrieving from a hash table:
 - If the keys don't match, continue to the next position depending on your collision strategy.
 */
 
+import LinkedList from "./LinkedList.js";
+
 class HashMap {
   constructor(size = 0) {
-    this.hashmap = new Array(size).fill(null);
+    this.hashmap = new Array(size).fill(null).map(() => new LinkedList());
   }
 
   hash(key) {
@@ -35,12 +37,51 @@ class HashMap {
 
   assign(key, value) {
     const arrayIndex = this.hash(key);
-    this.hashmap[arrayIndex] = value;
+    // make it collision-proof (separate chaining strategy)
+    const linkedList = this.hashmap[arrayIndex];
+
+    console.log(`Storing ${value} at index ${arrayIndex}`);
+
+    // for empty list
+    if (!linkedList.head) {
+      linkedList.addToHead({ key, value });
+      return;
+    }
+    // for not empty list
+    let current = linkedList.head;
+    // iterate the list
+    while (!current) {
+      // overwrite value with same key
+      if (current.data.key === key) {
+        current.data = { key, value };
+      }
+      // add to tail
+      if (!current.getNextNode()) {
+        current.setNextNode(new Node({ key, value }));
+        break;
+      }
+
+      current = current.getNextNode();
+    }
   }
 
   retrieve(key) {
     const arrayIndex = this.hash(key);
-    return this.hashmap[arrayIndex];
+    const linkedList = this.hashmap[arrayIndex];
+    let current = linkedList.head;
+
+    while (current) {
+      if (current.data.key === key) {
+        console.log(
+          `\nRetrieving ${current.data.value} from index ${arrayIndex}`
+        );
+
+        return current.data.value;
+      }
+      current = current.getNextNode();
+    }
+
+    return null;
   }
 }
 
