@@ -12,6 +12,10 @@ export class Graph {
     return newVertex;
   }
 
+  removeVertex(vertexToRemove) {
+    this.vertices = this.vertices.filter((vertex) => vertex !== vertexToRemove);
+  }
+
   print() {
     const vertexList = this.vertices || [];
     vertexList.forEach((vertex) => vertex.print());
