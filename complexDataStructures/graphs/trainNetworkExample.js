@@ -30,7 +30,7 @@ trainNetwork.addEdge(losAngelesStation, atlantaStation, 2100);
 trainNetwork.addEdge(atlantaStation, losAngelesStation, 2100);
 
 trainNetwork.print();
-console.log(`\n UPDATE: New Yor to Denver is closed!\n`);
+console.log(`\n UPDATE: New York to Denver is closed!\n`);
 
 // Remove the route from New York to Denver
 trainNetwork.removeEdge(newYorkStation, denverStation);
