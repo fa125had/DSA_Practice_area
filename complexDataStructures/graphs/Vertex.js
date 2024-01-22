@@ -6,12 +6,16 @@ export class Vertex {
     this.edges = [];
   }
 
-  addEdge(vertex) {
+  addEdge(vertex, weight) {
     if (vertex instanceof Vertex) {
-      this.edges.push(new Edge(this, vertex));
+      this.edges.push(new Edge(this, vertex, weight));
     } else {
       throw new Error("Given vertex should be an instance of Vertex class.");
     }
+  }
+
+  removeEdge(vertexToRemove) {
+    this.edges = this.edges.filter((edge) => edge.end !== vertexToRemove);
   }
 
   print() {
