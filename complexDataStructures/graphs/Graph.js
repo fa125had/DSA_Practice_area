@@ -1,9 +1,10 @@
 import { Vertex } from "./Vertex.js";
 
 export class Graph {
-  constructor(isWeighted = false) {
+  constructor(isWeighted = false, isDirected = false) {
     this.vertices = [];
     this.isWeighted = isWeighted;
+    this.isDirected = isDirected;
   }
 
   addVertex(data) {
@@ -22,7 +23,10 @@ export class Graph {
 
     if (vertexOne instanceof Vertex && vertexTwo instanceof Vertex) {
       vertexOne.addEdge(vertexTwo, edgeWeight);
-      vertexTwo.addEdge(vertexOne, edgeWeight);
+      // check if graph is directed
+      if (!this.isDirected) {
+        vertexTwo.addEdge(vertexOne, edgeWeight);
+      }
     } else {
       throw new Error(
         "Both given vertices should be instance of Vertex class."
@@ -33,7 +37,10 @@ export class Graph {
   removeEdge(vertexOne, vertexTwo) {
     if (vertexOne instanceof Vertex && vertexTwo instanceof Vertex) {
       vertexOne.removeEdge(vertexTwo);
-      vertexTwo.removeEdge(vertexOne);
+      // check if graph is directed
+      if (!this.isDirected) {
+        vertexTwo.removeEdge(vertexOne);
+      }
     } else {
       throw new Error("Expected Vertex arguments.");
     }
@@ -44,7 +51,6 @@ export class Graph {
     vertexList.forEach((vertex) => vertex.print());
   }
 }
-
 
 // test script
 const trainNetwork = new Graph(true);
