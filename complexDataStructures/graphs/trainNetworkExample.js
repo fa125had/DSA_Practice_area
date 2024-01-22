@@ -41,5 +41,5 @@ trainNetwork.removeEdge(calgaryStation, denverStation);
 trainNetwork.removeEdge(denverStation, calgaryStation);
 trainNetwork.removeVertex(calgaryStation);
 
-console.log(`\n UPDATE: Denver station is not operational today!\n`);
+console.log(`\n UPDATE: Calgary station is not operational today!\n`);
 trainNetwork.print();
