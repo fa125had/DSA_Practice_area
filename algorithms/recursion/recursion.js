@@ -32,3 +32,11 @@ const recursiveFactorial = (n) => {
 const rFactorial = recursiveFactorial(number);
 console.log(`Recursive Factorial of ${number}: ${iFactorial}`);
 
+/*
+While every recursive problem is a little different, 
+the following features will always be required:
+
+* Recursive case: the conditions under which the function will perform an action and call itself.
+
+* Base case: the conditions under which the function returns a value without making any additional calls to itself
+*/
