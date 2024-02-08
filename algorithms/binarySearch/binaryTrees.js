@@ -64,7 +64,6 @@ class BinaryTree {
   }
 }
 
-
 // Test Script
 const randomize = () => Math.floor(Math.random() * 40);
 const bt = new BinaryTree(15);
